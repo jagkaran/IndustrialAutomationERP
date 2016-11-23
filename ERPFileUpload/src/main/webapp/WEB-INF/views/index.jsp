@@ -17,11 +17,27 @@
 
 <!--<script src="../bower_components/angular/angular.js"></script>-->
 <script src="http://code.angularjs.org/1.5.8/angular.min.js"></script>
-<script src="js/vendor/angular-file-upload.min.js"></script>
-<script src="js/controller/controllers.js"></script>
+<script src="/js/vendor/angular-file-upload.min.js"></script>
+<script src="/js/controller/controllers.js"></script>
 
 <!--thumbnails for images-->
-<script src="js/directive/directives.js"></script>
+<script src="/js/directive/directives.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+
+		// We can attach the `fileselect` event to all file inputs on the page
+		$(document).on(
+				'change',
+				':file',
+				function() {
+					var input = $(this), numFiles = input.get(0).files ? input
+							.get(0).files.length : 1, label = input.val()
+							.replace(/\\/g, '/').replace(/.*\//, '');
+					input.trigger('fileselect', [ numFiles, label ]);
+				});
+	});
+</script>
 
 <style>
 .my-drop-zone {
@@ -124,11 +140,15 @@ canvas {
 		</div>
 
 
-		<div class="col-md-6">
-			<!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-			<input type="file" nv-file-select="" uploader="uploader" /><br />
+		<div class="col-lg-3" class="col-md-3" class="col-sm-3">
+			<div class="input-group">
+				<label class="input-group-btn"> <span
+					class="btn btn-primary"> <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+						Browse<input type="file" style="display: none;" nv-file-select=""
+						uploader="uploader" />
+				</span>
+				</label>
+			</div>
 		</div>
-	</div>
-
 </body>
 </html>
