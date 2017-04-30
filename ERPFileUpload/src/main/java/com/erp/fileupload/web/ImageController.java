@@ -49,7 +49,7 @@ public class ImageController {
     @RequestMapping
     public String index() {
         log.debug("ImageController home");
-        return "index";
+        return "static/views/index";
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.GET)

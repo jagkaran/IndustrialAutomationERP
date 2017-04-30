@@ -48,8 +48,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
+        resolver.setPrefix("");
+        resolver.setSuffix(".html");
         resolver.setCache(false);
         resolver.setViewClass(JstlView.class);
         return resolver;
@@ -90,7 +90,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/404.html").addResourceLocations("/404.html");
         registry.addResourceHandler("/405.html").addResourceLocations("/405.html");
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
     }
 
     @Override
